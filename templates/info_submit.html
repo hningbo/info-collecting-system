@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>信息填写：{{info.infoname}}</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+</head>
+
+<body>
+    {% include "header.html" %}
+    <div class="jumbotron">
+        <div class="container">
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">
+                    <h3>填写信息</h3></div>
+                <div class="panel-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">信息表名称：{{info.infoname}}</li>
+                        <li class="list-group-item">发布人：{{info.subscriber}}</li>
+                        <li class="list-group-item">发布时间：{{info.start_time}}</li>
+                        <li class="list-group-item">截止时间：{{info.end_time}}</li>
+                    </ul>
+                    <form action="/info/{{info._id}}/submit" method="POST" role="form">
+                        <div class="form-group">
+                            <legend>信息表</legend>
+                            <table>
+                                {% for item in info.content%}
+                                <div>
+                                <li class="list-group-item">
+                                    <label><h4>{{item.name}}<h4></label>
+                                </li>
+                                <li class="list-group-item">
+                                    <input type="text" name="{{item.name}}" class="form-control" placeholder="{{item.demo}}" required="true">
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">填写要求</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            {{item.request}}
+                                        </div>
+                                    </div>
+                                </li>
+                            </div>
+                            </table>
+                            {% endfor %}
+                        </div>
+                        <div class="pull-right">
+                            <button type="submit" class="btn btn-primary">提交</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- jQuery -->
+    <script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.js"></script>
+</body>
+
+</html>

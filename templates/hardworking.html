@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/favicon.ico">
+    <title>好好学习，天天向上</title>
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <script type="text/javascript">
+    function study() {
+        document.form.action = "study.do";
+    }
+
+    function giveup() {
+        document.form.action = "giveup.do";
+    }
+    </script>
+    {% include "header.html" %}
+    <div class="jumbotron">
+        <div class="container">
+            <form name="form" method="POST" role="form" id="registerform">
+                <legend>上报加班</legend>
+                <div class="form-group">
+                    <label for="">账号</label>
+                    <input type="text" class="form-control" name="account" placeholder="账号" style="width:50%" required="true">
+                    <label for="">密码</label>
+                    <input type="password" class="form-control" name="password" placeholder="密码" style="width:50%" required="true">
+                    <label for="">加班地点</label>
+                    <select name="place" form="registerform" id="input" class="form-control" required="required" style="width:50%">
+                        <option value="四楼俱乐部">四楼俱乐部</option>
+                        <option value="406">406</option>
+                        <option value="502">502</option>
+                        <option value="503">503</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary" onclick="study()">上报加班</button>
+                <button type="submit" class="btn btn-primary" onclick="giveup()">退报加班</button>
+            </form>
+        </div>
+        <div class="container">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>今晚加班情况</h3>
+                </div>
+                <div class="panel-body">
+                    今晚全d应到96人，实到{{96-overtimeSum}}人，加班共{{overtimeSum}}人
+                    <br/>
+                    <br/> 其中：
+                    <br/> 单位1应到41人，实到{{41-overtime1}}人，加班共{{overtime1}}人
+                    <br/> 单位2应到55人，实到{{55-overtime2}}人，加班共{{overtime2}}人
+                    <br/> 单位3应到人，实到人，加班共{{overtime3}}人
+                    <br/>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td>姓名</td>
+                                <td>单位</td>
+                                <td>年级</td>
+                                <td>宿舍号</td>
+                                <td>加班地点</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for u in users %}
+                            <tr>
+                                <td>{{u.name}}</td>
+                                <td>{{u.unit}}</td>
+                                <td>
+                                    {% if u.grade == 1 %} 大一 {% elif u.grade == 2 %} 大二 {% elif u.grade == 3 %} 大三 {% elif u.grade == 4 %} 大四 {% endif %}
+                                </td>
+                                <td>{{u.homenum}}</td>
+                                <td>{{u.place}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</body>
+
+</html>

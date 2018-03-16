@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>信息采集列表</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+    {% include "header.html" %}
+    <div class="jumbotron">
+        <div class="container">
+            <h1>你好，{{ username }}</h1>
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">待填写的信息列表</div>
+                <div class="panel-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>信息表名称</th>
+                                <th>发布人</th>
+                                <th>截止日期</th>
+                                <th>完成情况</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for info in infoList %}
+                            <tr>
+                                <td>{{ info.infoname }}</td>
+                                <td>{{ info.subscriber }}</td>
+                                <td>{{ info.end_time }}</td>
+                                <td>{{ info.finished_number }}/{{ info.number }}</td>
+                                <td>
+                                    <button type="button" class="btn btn-default" onclick='window.open("/info/page/submit/{{info._id}}")''>进入提交
+                                    </button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- jQuery -->
+    <script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>管理用户</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    {%include "header.html"%}
+    <div class="jumbotron">
+        <div class="container">
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">任务列表一览</div>
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>信息表名称</th>
+                                <th>发布时间</th>
+                                <th>截止时间</th>
+                                <th>发布者</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for info in infos %}
+                            <tr>
+                                <td>{{ info.infoname }}</td>
+                                <td>{{ info.start_time }}</td>  
+                                <td>{{ info.end_time }}</td>                              
+                                <td>{{ info.subscriber }}</td>
+                                <td><a href="/info/download/{{info._id}}">下载导出数据</a></td>
+                                <td><a href="/info/delete/{{info._id}}">删除数据</a></td>
+                            </tr>
+                            {% endfor %}
+					</tbody>
+				</table>
+				</div>
+
+				
+			</div>
+        </div>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</body>
+
+</html>

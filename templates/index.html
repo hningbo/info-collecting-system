@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>登录界面</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+    {%include "header.html"%}
+    <div class="jumbotron">
+        <div class="container">
+            <h1>信息采集系统</h1>
+            <form action="/user/login" name="form" method="POST" role="form" id="registerform">
+                <div class="form-group">
+                    <label for="">账号</label>
+                    <input type="text" class="form-control" name="username" placeholder="账号" style="width:50%" required="true">
+                    <label for="">密码</label>
+                    <input type="password" class="form-control" name="password" placeholder="密码" style="width:50%" required="true">
+                </div>
+                <button type="submit" class="btn btn-primary">登录</button>
+                <a class="btn btn-primary" data-toggle="modal" href='#modal-register'>注册账号</a>
+            </form>
+            <div class="modal fade" id="modal-register">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">注册</h4>
+                        </div>
+                        <form action="/user/register" method="POST" role="form" id="userform">
+                            <div class="modal-body">
+                                <legend>输入账号信息</legend>
+                                <div class="form-group">
+                                    <label for="">账号</label>
+                                    <input type="text" class="form-control" name="username" placeholder="账号" required="true">
+                                    <label for="">姓名</label>
+                                    <input type="text" name="realname" id="input" class="form-control" placeholder="名字">
+                                    <label for="">密码</label>
+                                    <input type="password" class="form-control" name="password" placeholder="密码" required="true">
+                                    <label for="">宿舍号</label>
+                                    <input type="number" class="form-control" name="homenum" placeholder="411" required="true">
+                                    <label for="">单位</label>
+                                    <select name="unit" form="userform" id="input" class="form-control">
+                                        <option value="1">一</option>
+                                        <option value="2">二</option>
+                                        <option value="3">三</option>
+                                    </select>
+                                    <label for="">年级</label>
+                                    <select name="grade" form="userform" id="input" class="form-control" required="required">
+                                        <option value="1">大一</option>
+                                        <option value="2">大二</option>
+                                        <option value="3">大三</option>
+                                        <option value="4">大四</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                <button type="submit" class="btn btn-primary" data-toggle="modal">注册账号</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
